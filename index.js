@@ -10,18 +10,18 @@ const app = express()
 
 
 
-//Init Member
+// Init Member
 // app.use(logger)
 
-//Handlebars Middleware
+// Handlebars Middleware
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
-//Body Parser Middleware
+// Body Parser Middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-//HomePage Router
+// HomePage Router
 app.get('/', (req, res) => {
     res.render('index',{
         title: 'Member App',
@@ -30,15 +30,16 @@ app.get('/', (req, res) => {
 });
 
 
-//Set static folder
+// Set static folder
 app.use(express.static(path.join(__dirname, 'public')))
 
-//Members API Routes
+// Members API Routes
 app.use('/api/members', require('./routes/api/members'))
 // app.use('/api/members', require('./views/layouts/test'))
 
 
 
-//server port
+// server port 
+
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Server port is${PORT}`))
